@@ -49,8 +49,9 @@ nav {
 
     // The tabs elements to navigate.
     .nav-main {
+        padding-top: 10px;
         text-align: center;
-        height: 40px;
+        height: 50px;
 
         .link {
             color: $grey-color-light-1;
@@ -66,92 +67,96 @@ nav {
         li {
             display: inline-block;
             padding: 0.5rem;
+
+            &.selected {
+                a h4 {
+                    color: $grey-color-light-1;
+                }
+            }
         }
     }
 
 
     // The api items container.
     .nav-api {
-        h3 a {
-            color: #fa3282;
-
-            &:hover {
-                color: #fa3282;
-            }
+        h3 {
+            font-size: 0.85rem;
+            margin: .5rem 0.4rem;
         }
 
         // The plus/minus sign next to each navigation item with children.
-        .toggle-subnav {
+        span.toggle-subnav {
             font-size: 10px;
             position: absolute;
             width: 18px;
-            height: 18px;
-            line-height: 18px;
+            height: 24px;
+            line-height: 24px;
             text-align: center;
             left: 2px;
-            margin-top: 3px;
 
-            &:focus {
+            &:hover {
                 outline: 0;
+                color: $grey-color-light-1;
+                cursor: hand;
             }
         }
+    }
 
-        //The listed nav items, e.g. classes and modules.
-        .nav-item {
-            a,
-            a:visited,
-            a:active {
-                font-size: 0.9rem;
-                line-height: 18px;
-                padding: .2rem;
-                padding-left: 1.5rem;
-                color: #b3b3b3;
-                display: block;
-            }
-
-            a.selected,
-            a.selected:hover {
-                background: $page-color;
-                color: $grey-color-dark-1;
-            }
-
-            a:hover {
-                background: $grey-color-dark-2;
-            }
+    //The listed nav items, e.g. classes and modules.
+    .nav-item {
+        a,
+        a:visited,
+        a:active {
+            font-size: 0.9rem;
+            line-height: 18px;
+            padding: .2rem;
+            padding-left: 1.5rem;
+            color: #b3b3b3;
+            display: block;
         }
 
-        .nav-item-sub {
-            background: $grey-color-light-2;
+        a.selected,
+        a.selected:hover {
+            background: $page-color;
+            color: $grey-color-dark-1;
+        }
 
-            .member-type {
-                padding: 0.2rem 0;
-                font-size: 0.9rem;
-                margin-left: 1.5rem;
-                color: $accent-color;
-                font-weight: normal;
-                cursor: text;
+        a:hover {
+            background: $grey-color-dark-2;
+        }
+    }
+
+    // Subitems in the navigation.
+    .nav-item-sub {
+        background: $grey-color-light-2;
+
+        .member-type {
+            padding: 0.2rem 0;
+            font-size: 0.9rem;
+            margin-left: 1.5rem;
+            color: $accent-color;
+            font-weight: normal;
+            cursor: text;
+        }
+
+        .inner {
+            li {
+                margin: 0;
+                border-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                color: #bbb;
             }
 
-            .inner {
-                li {
-                    margin: 0;
-                    border-bottom: 0;
-                    padding-top: 0;
-                    padding-bottom: 0;
-                    color: #bbb;
+            a {
+                padding-left: 1.8rem;
+                color: $grey-color-dark-2;
+
+                &:hover {
+                    background: $grey-color-light-1;
                 }
-
-                a {
-                    padding-left: 1.8rem;
-                    color: $grey-color-dark-2;
-
-                    &:hover {
-                        background: $grey-color-light-1;
-                    }
-                }
             }
         }
-
     }
 
     .version {
