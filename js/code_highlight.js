@@ -1,5 +1,12 @@
-/*global document */
-(function() {
+'use strict'
+
+require('./prettify')
+require('./lang-css')
+
+
+module.exports = function() {
+    prettyPrint()
+
     var source = document.getElementsByClassName('prettyprint source linenums');
     var i = 0;
     var lineNumber = 0;
@@ -19,7 +26,7 @@
             lineId = 'line' + lineNumber;
             lines[i].id = lineId;
 
-            lineNumberHTML = '<span class="number">' + (i + 1) + ' : </span>';
+            lineNumberHTML = '<span class="number">' + (i + 1) + '</span>';
 
             lines[i].insertAdjacentHTML('afterBegin', lineNumberHTML);
             if (lineId === anchorHash) {
@@ -27,4 +34,4 @@
             }
         }
     }
-})();
+}

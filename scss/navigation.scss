@@ -1,0 +1,160 @@
+@import "search";
+
+nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $navbar-width;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    min-height: 100%;
+    background: #343131;
+    z-index: 200;
+
+    > * {
+        user-select: none;
+    }
+
+
+    // Hides the scrollbar from the nav, but still allows scrolling the
+    // navbar with the wheel.
+    .scroll {
+        width: $navbar-width + 20px;
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: calc(100% - 215px);
+    }
+
+    ul {
+        line-height: 17px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+        li {
+            padding: 0;
+        }
+    }
+
+    h3 {
+        line-height: 1.5rem;
+        color: #555;
+        margin: 0;
+        margin-top: 10px;
+        margin-left: 0.5rem;
+        text-transform: uppercase;
+    }
+
+    // The tabs elements to navigate.
+    .nav-main {
+        text-align: center;
+        height: 40px;
+
+        .link {
+            color: $grey-color-light-1;
+        }
+    }
+
+    // The container for the nav-api and nav-manuals tabs.
+    .nav-tab {
+        text-align: center;
+        margin: 0;
+        height: 40px;
+
+        li {
+            display: inline-block;
+            padding: 0.5rem;
+        }
+    }
+
+
+    // The api items container.
+    .nav-api {
+        h3 a {
+            color: #fa3282;
+
+            &:hover {
+                color: #fa3282;
+            }
+        }
+
+        // The plus/minus sign next to each navigation item with children.
+        .toggle-subnav {
+            font-size: 10px;
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            left: 2px;
+            margin-top: 3px;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        //The listed nav items, e.g. classes and modules.
+        .nav-item {
+            a,
+            a:visited,
+            a:active {
+                font-size: 0.9rem;
+                line-height: 18px;
+                padding: .2rem;
+                padding-left: 1.5rem;
+                color: #b3b3b3;
+                display: block;
+            }
+
+            a.selected,
+            a.selected:hover {
+                background: $page-color;
+                color: $grey-color-dark-1;
+            }
+
+            a:hover {
+                background: $grey-color-dark-2;
+            }
+        }
+
+        .nav-item-sub {
+            background: $grey-color-light-2;
+
+            .member-type {
+                padding: 0.2rem 0;
+                font-size: 0.9rem;
+                margin-left: 1.5rem;
+                color: $accent-color;
+                font-weight: normal;
+                cursor: text;
+            }
+
+            .inner {
+                li {
+                    margin: 0;
+                    border-bottom: 0;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    color: #bbb;
+                }
+
+                a {
+                    padding-left: 1.8rem;
+                    color: $grey-color-dark-2;
+
+                    &:hover {
+                        background: $grey-color-light-1;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .version {
+        color: #aaa;
+    }
+}

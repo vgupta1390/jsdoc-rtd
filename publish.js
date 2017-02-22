@@ -338,7 +338,7 @@ function buildSubNav(obj) {
         memberof: longname
     });
 
-    var html = '<div class="hidden" id="' + obj.longname.replace(/"/g, '_') + '_sub">';
+    var html = '<div class="nav-item-sub hidden" id="' + obj.longname.replace(/"/g, '_') + '_sub">';
     html += buildSubNavMembers(members, 'Members');
     html += buildSubNavMembers(methods, 'Methods');
     html += buildSubNavMembers(events, 'Events');
@@ -368,7 +368,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
     if (items.length) {
         var itemsNav = '';
-        var className = itemHeading === tutorialsName ? 'lnb-examples hidden' : 'lnb-api hidden';
+        var className = itemHeading === tutorialsName ? 'lnb-examples hidden' : 'nav-api hidden';
         var makeHtml = env.conf.templates.useCollapsibles ? makeCollapsibleItemHtmlInNav : makeItemHtmlInNav;
 
         items.forEach(function(item) {
@@ -406,13 +406,11 @@ function makeItemHtmlInNav(item, linkHtml) {
 }
 
 function makeCollapsibleItemHtmlInNav(item, linkHtml) {
-    return '<li>'
-        + linkHtml
-        + '<button type="button" class="hidden toggle-subnav btn btn-link">'
-        + '  <span class="glyphicon glyphicon-plus"></span>'
-        + '</button>'
-        + buildSubNav(item)
-        + '</li>';
+    return `<li class="nav-item">
+                <span class="toggle-subnav invisible btn btn-link fa fa-plus"></span>
+                ${linkHtml}
+                ${buildSubNav(item)}
+            </li>`;
 }
 
 function linktoTutorial(longName, name) {
@@ -472,10 +470,10 @@ function buildNav(members) {
 
         if (useGlobalTitleLink) {
             // turn the heading into a link so you can actually get to the global page
-            nav += '<div class="lnb-api hidden"><h3>' + linkto('global', 'Global') + '</h3></div>';
+            nav += '<div class="nav-api hidden"><h3>' + linkto('global', 'Global') + '</h3></div>';
         }
         else {
-            nav += '<div class="lnb-api hidden"><h3>Global</h3><ul>' + globalNav + '</ul></div>';
+            nav += '<div class="nav-api hidden"><h3>Global</h3><ul>' + globalNav + '</ul></div>';
         }
     }
 

@@ -1,33 +1,39 @@
 {
-  "name": "tui-jsdoc-template",
-  "version": "1.1.0",
-  "description": "Toast UI JSDoc Template",
+  "name": "jsdoc-rtd",
+  "version": "1.0.0",
+  "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
   "main": "publish.js",
   "scripts": {
-    "serve": "gulp serve"
+    "build-css": "node-sass --include-path scss scss/main.scss static/styles/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "build-js": "browserify js/rtd.js > static/js/rtd.js",
+    "watch-js": "watchify js/rtd.js -o static/js/rtd.js -dv",
+    "assets": "cp -R node_modules/font-awesome/fonts/* static/fonts/;cp node_modules/font-awesome/css/font-awesome.min.css static/styles/"
   },
-  "authors": [
-    "NHNEnt FE Development Lab <dl_javascript@nhnent.com>"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nhnent/tui.jsdoc-template"
+    "url": "https://github.com/wearespindle/jsdoc-rtd"
   },
   "keywords": [
     "jsdoc",
     "jsdoc3",
     "jsdoc-template",
-    "template",
-    "tui"
+    "template"
   ],
   "dependencies": {
-    "cheerio": "^0.22.0"
+    "cheerio": "^0.22.0",
+    "font-awesome": "^4.7.0",
+    "sanitize-html": "^1.14.1"
   },
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
-    "gulp-jsdoc3": "^1.0.1"
+    "gulp-jsdoc3": "^1.0.1",
+    "jsdoc": "latest",
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0",
+    "watch-run": "latest"
   }
 }

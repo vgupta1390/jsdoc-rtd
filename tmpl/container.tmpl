@@ -17,13 +17,11 @@
     <?js= self.partial('source.tmpl', doc) ?>
 <?js } else { ?>
 
-<section>
-
 <header>
     <?js if (!doc.longname || doc.kind !== 'module') { ?>
         <h2><?js if (doc.ancestors && doc.ancestors.length) { ?>
             <span class="ancestors"><?js= doc.ancestors.join('') ?></span><?js
-         } 
+         }
         ?><?js= doc.name ?><?js
          if (doc.variation) { ?>
             <sup class="variation"><?js= doc.variation ?></sup>
@@ -67,7 +65,7 @@
     </div>
 
     <?js if (doc.augments && doc.augments.length) { ?>
-        <h3 class="subsection-title">Extends</h3>
+        <h3 class="subsection-title"><i class="fa fa-chain"></i>Extends</h3>
 
         <?js= self.partial('augments.tmpl', doc) ?>
     <?js } ?>
@@ -115,7 +113,7 @@
         }
         if (members && members.length && members.forEach) {
     ?>
-        <h3 class="subsection-title">Members</h3>
+        <h3 class="subsection-title"><i class="fa fa-cube"></i>Members</h3>
 
         <dl><?js members.forEach(function(p) { ?>
             <?js= self.partial('members.tmpl', p) ?>
@@ -126,7 +124,7 @@
         var methods = self.find({kind: 'function', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
         if (methods && methods.length && methods.forEach) {
     ?>
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title"><i class="fa fa-lightbulb-o"></i>Methods</h3>
 
         <dl><?js methods.forEach(function(m) { ?>
                 <?js= self.partial('method.tmpl', m) ?>
@@ -157,7 +155,7 @@
         var events = self.find({kind: 'event', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
         if (events && events.length && events.forEach) {
     ?>
-        <h3 class="subsection-title">Events</h3>
+        <h3 class="subsection-title"><i class="fa fa-refresh"></i>Events</h3>
 
         <dl><?js events.forEach(function(e) { ?>
             <?js= self.partial('method.tmpl', e) ?>
@@ -165,7 +163,6 @@
     <?js } ?>
 </article>
 
-</section>
 <?js } ?>
 
 <?js }); ?>

@@ -30,22 +30,12 @@ if (package) {
     version = package.version;
 }
 ?>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title><?js= title + ' | ' + name ?></title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
 
     <?js if (css) { ?>
         <?js css.forEach(function(style) { ?>
@@ -54,22 +44,26 @@ if (package) {
     <?js } ?>
 </head>
 <body>
-<nav class="lnb" id="lnb">
-    <div class="logo" style="<?js= style ?>">
-        <img src="<?js= logoUrl?>" width="100%" height="100%">
-    </div>
-    <div class="title">
-        <h1><a href="index.html" class="link"><?js= name ?></a></h1>
-        <?js if (version) { ?>
-            <span class="version">v<?js= version ?></span>
-        <?js } ?>
-    </div>
-    <div class="search-container" id="search-container">
-        <input type="text" placeholder="Search">
-        <ul></ul>
-    </div>
-    <?js if (examples) { ?>
-        <ol class="lnb-tab">
+<div class="main-container">
+
+    <nav class="lnb" id="lnb">
+        <div class="nav-search js-search">
+            <div class="logo" style="<?js= style ?>">
+                <img src="<?js= logoUrl?>" width="100%" height="100%">
+            </div>
+            <input type="text" placeholder="Search docs">
+            <ul class="searched-list"></ul>
+        </div>
+
+        <div class="nav-main">
+            <h1><a href="index.html" class="link"><?js= name ?></a></h1>
+            <?js if (version) { ?>
+                <span class="version">v<?js= version ?></span>
+            <?js } ?>
+        </div>
+
+        <?js if (examples) { ?>
+        <ol class="nav-tab">
             <li id="api-tab">
                 <a href="#"><h4><?js= apiName ?></h4></a>
             </li>
@@ -77,37 +71,37 @@ if (package) {
                 <a href="#"><h4><?js= tutorialsName ?></h4></a>
             </li>
         </ol>
-    <?js } ?>
-    <?js= this.nav ?>
-</nav>
-<div id="resizer"></div>
+        <?js } ?>
 
-<div class="main" id="main">
-    <?js= content ?>
+        <div class="scroll">
+        <?js= this.nav ?>
+        </div>
+    </nav>
+
+    <div class="content">
+        <ul class="breadcrumbs">
+            <li><a href="index.html">Docs</a> »</li>
+            <li><?js= title ?></li>
+        </ul>
+        <hr>
+        <?js= content ?>
+        <hr>
+        <footer>
+            Built with <a href="https://github.com/jsdoc3/jsdoc">JSDoc <?js= env.version.number ?></a><?js if(env.conf.templates && env.conf.templates.default && env.conf.templates.default.includeDate !== false) ?>
+        </footer>
+    </div>
 </div>
 
-<footer>
-    <img class="logo" src="<?js= logoUrl?>" style="<?js= style ?>">
-    <div class="footer-text"><?js= footerText || 'NHN Entertainment. Frontend Development Lab' ?></div>
-</footer>
-<script>prettyPrint();</script>
-<script src="scripts/jquery.min.js"></script>
-<script src="scripts/tui-doc.js"></script>
-<script src="scripts/linenumber.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/rtd.js"></script>
+<script>
+window.selectedApiId = null;
 <?js if (!isTutorial) { ?>
-    <script>
-        var id = '<?js= docs[0].longname ?>_sub'.replace(/"/g, '_');
-        var selectedApi = document.getElementById(id); // do not use jquery selector
-        var $selectedApi = $(selectedApi);
-
-        $selectedApi.removeClass('hidden');
-        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-        showLnbApi();
-    </script>
+    window.isManual = false
+    window.selectedApiId = '<?js= docs[0].longname ?>_sub'.replace(/"/g, '_')
 <?js } else { ?>
-    <script>
-        showLnbExamples();
-    </script>
+    window.isManual = true
 <?js } ?>
+</script>
 </body>
 </html>

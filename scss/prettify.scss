@@ -1,0 +1,151 @@
+.details pre.prettyprint {
+    margin: 0;
+}
+
+.prettyprint {
+    font-size: 0.8rem;
+    overflow: auto;
+    padding: 0.5rem;
+
+    &.source {
+        width: inherit;
+        line-height: 18px;
+        display: block;
+        background-color: $grey-color-dark-1;
+        color: $grey-color-light-1;
+    }
+
+    code {
+        line-height: 18px;
+        color: #4d4e53;
+    }
+
+
+    .linenums {
+        code {
+            padding: 0 15px;
+        }
+
+        li:first-of-type code {
+            padding-top: 15px;
+        }
+    }
+
+
+
+    code span.line {
+        display: inline-block;
+    }
+
+    &.linenums {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        .number {
+            width: 20px;
+            display: block;
+            float: left;
+        }
+
+        ol {
+            padding-left: 0;
+        }
+
+        li {
+
+            &.selected,
+            &.selected * {
+                background-color: darken($accent-color, 20%);
+            }
+
+            * {
+                -webkit-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
+        }
+    }
+}
+
+.pln {
+    color: #ddd !important;
+}
+
+// string content.
+.str {
+    color: lighten($accent-color, 30%);
+}
+
+// A keyword.
+.kwd {
+    color: $accent-color;
+}
+
+// A comment.
+.com {
+    color: #aeaeae;
+}
+
+// A type name.
+.typ {
+    color: #8da6ce;
+}
+
+// A literal value.
+.lit {
+    color: #fbde2d;
+}
+
+// Punctuation.
+.pun {
+    color: #ddd;
+}
+
+// Lisp open bracket.
+.opn {
+    color: #000;
+}
+
+// Lisp close bracket.
+.clo {
+    color: #000;
+}
+
+// A markup tag name.
+.tag {
+    color: #8da6ce;
+}
+
+// A markup attribute name.
+.atn {
+    color: #fbde2d;
+}
+
+// A markup attribute value.
+.atv {
+    color: #ddd;
+}
+
+// A declaration.
+.dec {
+    color: #ef5050;
+}
+
+// A variable name.
+.var {
+    color: #c82829;
+}
+
+// A function name.
+.fun {
+    color: #4271ae;
+}
+
+// Specify class=linenums on a pre to get line numbering.
+.linenums {
+    margin-top: 0;
+    margin-bottom: 0;
+}

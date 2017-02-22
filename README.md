@@ -1,15 +1,13 @@
-# TUI JSDoc Template
-Toast UI JSDoc template
-
-Demo: https://nhnent.github.io/tui.jsdoc-template/latest/
+# jsdoc-rtd
+A readthedocs-style themed jsdoc template. Forked from [TUI JSDoc Template](https://github.com/nhnent/tui.jsdoc-template).
 
 ## install
 ```
-npm i -D tui-jsdoc-template
+npm i -D jsdoc-rtd
 ```
 
 ## Feature
-TUI JSDoc template has following features.
+jsdoc-rtd inherits the following features from TUI JSDoc template:
 
 * Navigation - AutoComplete Searchbox
 * Navigation - Members / Methods / Events
@@ -17,15 +15,13 @@ TUI JSDoc template has following features.
 * Navigation - Resize
 * Examples - HTML/JS source tab in example page
 
-![Example](https://cloud.githubusercontent.com/assets/12269563/20049432/69d2ed42-a506-11e6-980e-53b991e5ee5b.png)
-
 ## Configuration
 ([*jsdoc page - configuration*](http://usejsdoc.org/about-configuring-jsdoc.html#incorporating-command-line-options-into-the-configuration-file))
 
 ### Template
 ```
 "opts": {
-    "template": "node_modules/tui-jsdoc-template"
+    "template": "node_modules/jsdoc-rtd"
 }
 ```
 
@@ -33,7 +29,7 @@ TUI JSDoc template has following features.
 ```
 "templates": {
     "logo": {
-        "url": "http://nhnent.github.io/tui.component.tree/latest/styles/logo.png",
+        "url": "http://url.to/image.png",
         "width": "150px",
         "height": "13px"
     }
@@ -43,14 +39,14 @@ TUI JSDoc template has following features.
 ### Page Title
 ```
 "templates": {
-    "name": "Tui JSDoc Template"
+    "name": "jsdoc template"
 }
 ```
 
 ### FooterText
 ```
 "templates": {
-    "footerText": "blabla..."
+    "footerText": "some text"
 }
 ```
 
@@ -102,7 +98,7 @@ And a config like this:
 `default.staticFiles` is the build-in jsdoc way of copying extra files.
 
 <br>
-## Expose the html/js code to exmaple page
+## Expose the html/js code to example page
 If `script` or `div` elements have `code-js` or `code-html` class, expose their innerHTML.
 
 1. innerHTML of `script.code-js` tag
@@ -128,8 +124,3 @@ If `script` or `div` elements have `code-js` or `code-html` class, expose their 
 </html>
 
 ```
-
-<br>
-## Development
-1. Use `npm run serve` or `gulp serve` command to ascertain realtime.
-3. Api-Example tab, Auto-Complete and Resize functions are written in the `static/scripts/tui-doc.js` file.
