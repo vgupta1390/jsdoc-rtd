@@ -355,7 +355,7 @@ function buildSubNavMembers(list, type) {
         html += '<div class="member-type">' + type + '</div>';
         html += '<ul class="inner">';
         list.forEach(function(item) {
-            html += '<li>' + linkto(item.longname, item.name) + '</li>';
+            html += '<li class="sub-nav-item">' + linkto(item.longname, item.name) + '</li>';
         });
         html += '</ul>';
     }
@@ -391,7 +391,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
         });
 
         if (itemsNav !== '') {
-            nav += '<div class="' + className + '"><h3>' + itemHeading + '</h3><ul>' + itemsNav + '</ul></div>';
+            nav += '<div class="' + className + '"><h3>' + itemHeading + '</h3><ul class="nav-items">' + itemsNav + '</ul></div>';
         }
     }
 

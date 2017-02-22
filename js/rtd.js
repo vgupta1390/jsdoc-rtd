@@ -35,6 +35,8 @@ class RTD {
             this.showManualsTab()
         }
 
+        this.setSubNavSelected()
+
         this.events()
     }
 
@@ -56,8 +58,6 @@ class RTD {
                 })
         })
 
-
-
         function resize(event) {
             var clientX = event.clientX
             clientX = Math.max(200, clientX)
@@ -74,6 +74,8 @@ class RTD {
         this.$.resizer.on('mousedown', function() {
             $(window).on({mousemove: resize, mouseup: detachResize})
         })
+
+        window.addEventListener('hashchange', this.setSubNavSelected.bind(this), false)
     }
 
     /**
@@ -94,6 +96,16 @@ class RTD {
         this.$.apiTab.addClass('selected')
         $('.nav-api').removeClass('hidden')
         $('.lnb-examples').addClass('hidden')
+    }
+
+
+    /**
+     * Selected item in the sub navigation.
+     */
+    setSubNavSelected() {
+        $('.sub-nav-item a').removeClass('selected')
+        let item = document.querySelector(`a[href$="${location.pathname.substr(1)}${location.hash}"]`)
+        $(item).addClass('selected')
     }
 }
 

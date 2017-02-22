@@ -231,10 +231,6 @@ table {
         padding-top: 6px;
     }
 
-    dd {
-        margin-left: 70px;
-    }
-
     ul {
         list-style-type: none;
         margin: 0;
@@ -336,13 +332,13 @@ dt {
 }
 
 dd {
-    margin-left: 1rem;
+    margin-left: 0;
 }
 
 // The parameters header of a function.
 .container-returns,
 .container-params {
     h5 {
-        margin: 1rem 0;
+        margin: 1.5rem 0 0.3rem 0;
     }
 }

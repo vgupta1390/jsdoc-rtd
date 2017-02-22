@@ -24,27 +24,14 @@ nav {
         position: relative;
         overflow-x: hidden;
         overflow-y: scroll;
-        height: calc(100% - 215px);
+        height: calc(100% - 235px);
     }
 
-    ul {
+    ul.nav-items {
         line-height: 17px;
         padding: 0;
         margin: 0;
         list-style-type: none;
-
-        li {
-            padding: 0;
-        }
-    }
-
-    h3 {
-        line-height: 1.5rem;
-        color: #555;
-        margin: 0;
-        margin-top: 10px;
-        margin-left: 0.5rem;
-        text-transform: uppercase;
     }
 
     // The tabs elements to navigate.
@@ -56,6 +43,16 @@ nav {
         .link {
             color: $grey-color-light-1;
         }
+    }
+
+    // The headers for the type item lists(modules/classes/...).
+    h3 {
+        line-height: 1.5rem;
+        color: #555;
+        margin: 0;
+        margin-top: 10px;
+        margin-left: 0.5rem;
+        text-transform: uppercase;
     }
 
     // The container for the nav-api and nav-manuals tabs.
@@ -83,23 +80,6 @@ nav {
             font-size: 0.85rem;
             margin: .5rem 0.4rem;
         }
-
-        // The plus/minus sign next to each navigation item with children.
-        span.toggle-subnav {
-            font-size: 10px;
-            position: absolute;
-            width: 18px;
-            height: 24px;
-            line-height: 24px;
-            text-align: center;
-            left: 2px;
-
-            &:hover {
-                outline: 0;
-                color: $grey-color-light-1;
-                cursor: hand;
-            }
-        }
     }
 
     //The listed nav items, e.g. classes and modules.
@@ -115,14 +95,24 @@ nav {
             display: block;
         }
 
+        // A selected main navigation item.
         a.selected,
         a.selected:hover {
             background: $page-color;
             color: $grey-color-dark-1;
+            font-weight: bold;
         }
 
         a:hover {
             background: $grey-color-dark-2;
+        }
+
+        // Submenu is collapsed; not the selected one.
+        // Set the navigation menu item to semi-selected.
+        span.fa-minus  + a:not(.selected) {
+            background: $grey-color-light-1;
+            color: $grey-color-dark-1;
+            font-weight: bold;
         }
     }
 
@@ -156,6 +146,24 @@ nav {
                     background: $grey-color-light-1;
                 }
             }
+        }
+    }
+
+
+    // The plus/minus sign next to each navigation item with children.
+    span.toggle-subnav {
+        font-size: 10px;
+        position: absolute;
+        width: 18px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        left: 2px;
+
+        &:hover {
+            outline: 0;
+            color: $grey-color-light-1;
+            cursor: hand;
         }
     }
 
