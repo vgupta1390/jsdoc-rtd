@@ -1,7 +1,9 @@
 {
   "name": "jsdoc-rtd",
-  "version": "1.0.0",
   "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
+  "version": "1.0.1",
+  "license": "MIT",
+  "homepage": "https://github.com/wearespindle/jsdoc-rtd",
   "main": "publish.js",
   "scripts": {
     "build-css": "node-sass --include-path scss scss/main.scss static/styles/main.css",
@@ -11,7 +13,6 @@
     "assets": "cp -R node_modules/font-awesome/fonts/* static/fonts/;cp node_modules/font-awesome/css/font-awesome.min.css static/styles/",
     "prepublish": "npm run assets;npm run build-css;npm run build-js;"
   },
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wearespindle/jsdoc-rtd"
@@ -27,7 +28,7 @@
     "LICENSE_TUI_JSDOC",
     "publish.js",
     "tmpl",
-    "static",
+    "static"
   ],
   "dependencies": {
     "cheerio": "^0.22.0",
