@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-rtd",
-  "version": "0.5",
+  "version": null,
   "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
   "main": "publish.js",
   "scripts": {
