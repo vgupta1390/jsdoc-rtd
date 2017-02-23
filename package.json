@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-rtd",
-  "version": "1.0.0",
+  "version": "0.5",
   "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
   "main": "publish.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "build-js": "browserify js/rtd.js > static/js/rtd.js",
     "watch-js": "watchify js/rtd.js -o static/js/rtd.js -dv",
-    "assets": "cp -R node_modules/font-awesome/fonts/* static/fonts/;cp node_modules/font-awesome/css/font-awesome.min.css static/styles/"
+    "assets": "cp -R node_modules/font-awesome/fonts/* static/fonts/;cp node_modules/font-awesome/css/font-awesome.min.css static/styles/",
+    "prepublish": "npm run assets;npm run build-css;npm run build-js;"
   },
   "license": "MIT",
   "repository": {
