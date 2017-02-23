@@ -1,6 +1,7 @@
 # jsdoc-rtd
 A readthedocs-style themed jsdoc template. Forked from [TUI JSDoc Template](https://github.com/nhnent/tui.jsdoc-template).
 
+![Example](https://cloud.githubusercontent.com/assets/213060/23259167/0dd22ca4-f9cc-11e6-9d5e-3ed926c85296.png)
 ## install
 ```
 npm i -D jsdoc-rtd
@@ -30,8 +31,8 @@ jsdoc-rtd inherits the following features from TUI JSDoc template:
 "templates": {
     "logo": {
         "url": "http://url.to/image.png",
-        "width": "150px",
-        "height": "13px"
+        "width": "72px",
+        "height": "60px"
     }
 }
 ```
