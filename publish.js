@@ -358,7 +358,7 @@ function buildSubNav(obj) {
         memberof: longname,
     })
 
-    let html = `<div class="nav-item-sub hidden" id="${obj.longname.replace(/"/g, '_')}_sub">`
+    let html = `<div class="nav-item-sub hidden" id="${obj.name.replace(/"/g, '_')}_sub">`
     html += buildSubNavMembers(members, 'Members')
     html += buildSubNavMembers(methods, 'Methods')
     html += buildSubNavMembers(events, 'Events')
@@ -388,13 +388,14 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
     if (items.length) {
         let itemsNav = ''
-        let className = itemHeading === tutorialsName ? 'lnb-examples hidden' : 'nav-api hidden'
+        let className = itemHeading === tutorialsName ? 'nav-manuals hidden' : 'nav-api hidden'
         let makeHtml = env.conf.templates.useCollapsibles ? makeCollapsibleItemHtmlInNav : makeItemHtmlInNav
 
         items.forEach(function(item) {
             let linkHtml
 
             if ( !hasOwnProp.call(item, 'longname') ) {
+
                 itemsNav += `<li>${linktoFn('', item.name)}${buildSubNav(item)}</li>`
             } else if ( !hasOwnProp.call(itemsSeen, item.longname) ) {
                 let displayName

@@ -171,3 +171,200 @@ nav {
         color: #aaa;
     }
 }
+
+
+
+
+// Copied and modified from:
+// https://github.com/clenemt/docdash/blob/master/static/styles/jsdoc.css
+.navicon-button {
+    display: none;
+    position: relative;
+    padding: 2 1.5rem;
+    transition: 0.25s;
+    cursor: pointer;
+    user-select: none;
+    opacity: .8;
+}
+
+.navicon-button .navicon:before, .navicon-button .navicon:after {
+    transition: 0.25s;
+}
+
+.navicon-button:hover {
+    transition: 0.5s;
+    opacity: 1;
+}
+
+.navicon-button:hover .navicon:before, .navicon-button:hover .navicon:after {
+    transition: 0.25s;
+}
+
+.navicon-button:hover .navicon:before {
+    top: .825rem;
+}
+
+.navicon-button:hover .navicon:after {
+    top: -.825rem;
+}
+
+
+.navicon {
+    position: relative;
+    width: 2.5em;
+    height: .3125rem;
+    background: $accent-color;
+    transition: 0.3s;
+    border-radius: 2.5rem;
+    box-shadow: 1px 1px 2px #000;
+
+    &:before,
+    &:after {
+        display: block;
+        content: "";
+        height: .3125rem;
+        width: 2.5rem;
+        background: $accent-color;
+        position: absolute;
+        z-index: -1;
+        transition: 0.3s 0.25s;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 2px #000;
+    }
+
+    &:before {
+        top: .625rem;
+    }
+
+    &:after {
+        top: -.625rem;
+    }
+
+}
+
+
+// Open.
+.nav-trigger:checked + label:not(.steps) .navicon:before,
+.nav-trigger:checked + label:not(.steps) .navicon:after {
+    top: 0;
+}
+
+.nav-trigger:checked + label .navicon:before,
+.nav-trigger:checked + label .navicon:after {
+    transition: 0.5s;
+}
+
+// Minus.
+.nav-trigger:checked + label {
+    transform: scale(0.75);
+}
+
+// × and +.
+.nav-trigger:checked + label.plus .navicon,
+.nav-trigger:checked + label.x .navicon {
+    background: transparent;
+    box-shadow: none;
+}
+
+.nav-trigger:checked + label.plus .navicon:before,
+.nav-trigger:checked + label.x .navicon:before {
+    transform: rotate(-45deg);
+    background: #fff;
+}
+
+.nav-trigger:checked + label.plus .navicon:after,
+.nav-trigger:checked + label.x .navicon:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background: #fff;
+}
+
+.nav-trigger:checked + label.plus {
+    transform: scale(0.75) rotate(45deg);
+}
+
+.nav-trigger:checked ~ nav {
+    left: 0;
+}
+
+.nav-trigger:checked ~ .overlay {
+    display: block;
+}
+
+.nav-trigger {
+    position: fixed;
+    top: 0;
+    clip: rect(0, 0, 0, 0);
+}
+
+// The overlay behind the navigation when the mobile navigation is active.
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(0, 0%, 0%, 0.5);
+    z-index: 1;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 680px) {
+    body {
+        overflow-x: hidden;
+
+        // Expand the content area and undo the major margin-left.
+        .main-container {
+            margin-left: 0;
+
+            .content {
+                width: 100%;
+                margin: 0;
+                padding: 0.5rem;
+            }
+        }
+    }
+
+    nav {
+        width: calc(100% - 100px);
+        left: calc(-100% - 100px);
+        z-index: 3;
+        transition: left 0.2s;
+
+        .scroll {
+            width: calc(100% + 20px);
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: calc(100% - 235px);
+        }
+    }
+
+
+    .navicon-button {
+        display: inline-block;
+        position: fixed;
+        top: 1.5em;
+        right: 0;
+        z-index: 2;
+    }
+
+
+    footer {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (min-width: 680px) {
+    body {
+        .main-container {
+            // Make sure the overlay hides, when the navigation is triggered
+            // and we switch back to regular wide-screen style.
+            .nav-trigger:checked ~ .overlay  {
+                display: none;
+            }
+        }
+    }
+}

@@ -12,8 +12,9 @@
         "es6": true
     },
     "globals": {
+        "doc": true,
         "isManual": true,
-        "selectedApiId": true
+        "isApi": true
     },
     "plugins": [
 

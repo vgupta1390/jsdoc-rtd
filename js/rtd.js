@@ -12,30 +12,39 @@ class RTD {
         this.$.main = $('#main')
         this.$.nav = $('nav')
         this.$.resizer = $('#resizer')
+        this.$.scroll = $('.scroll')
 
         this.$.apiTab = $('#api-tab')
-        this.$.examplesTab = $('#examples-tab')
+        this.$.manualsTab = $('#manuals-tab')
+
+        // Determine which category tab must be active.
+        if (location.hash === '#api') {
+            this.showApiTab()
+        } else if (location.hash === '#manuals' || isManual) {
+            this.showManualsTab()
+        } else {
+            this.showApiTab()
+        }
+
 
         // Targets the current page in the navigation.
-        if (selectedApiId) {
-            // This is the methods container in the navigation.
-            this.$.selectedApi = $(`#${selectedApiId}`)
-            this.$.selectedApi.removeClass('hidden')
-
-            // Add the selected class on the link.
-            this.$.selectedApi.prev().addClass('selected')
-            this.$.selectedApi.parent().find('.fa').removeClass('fa-plus').addClass('fa-minus')
+        if (isApi) {
+            this.$.selectedApiSubItem = $(`#${doc.name}_sub`)
+            this.$.selectedApiSubItem.removeClass('hidden')
+            let selectedApiItem = this.$.selectedApiSubItem.prev()
+            selectedApiItem.addClass('selected')
+            // Try to position selectedApiItem at the top of the scroll container.
+            let navScrollTop = this.$.scroll.get(0).getBoundingClientRect().top
+            let navItemTop = selectedApiItem.get(0).getBoundingClientRect().top
+            this.$.scroll.scrollTop(navItemTop - navScrollTop)
+            // Height of the item from the top of the scroll container.
+            this.$.selectedApiSubItem.parent().find('.fa').removeClass('fa-plus').addClass('fa-minus')
         }
 
-        this.showApiTab()
+        this.selectHref()
+
         this.codehighlight = new CodeHighlight()
         this.search = new Search()
-
-        if (isManual) {
-            this.showManualsTab()
-        }
-
-        this.setSubNavSelected()
 
         this.events()
     }
@@ -43,7 +52,7 @@ class RTD {
 
     events() {
         this.$.apiTab.on('click', this.showApiTab.bind(this))
-        this.$.examplesTab.on('click', this.showManualsTab.bind(this))
+        this.$.manualsTab.on('click', this.showManualsTab.bind(this))
 
         this.$.nav.find('.nav-api').each(function() {
             $(this).find('.toggle-subnav')
@@ -75,7 +84,7 @@ class RTD {
             $(window).on({mousemove: resize, mouseup: detachResize})
         })
 
-        window.addEventListener('hashchange', this.setSubNavSelected.bind(this), false)
+        window.addEventListener('hashchange', this.selectHref.bind(this), false)
     }
 
     /**
@@ -83,26 +92,26 @@ class RTD {
      */
     showManualsTab() {
         this.$.apiTab.removeClass('selected')
-        this.$.examplesTab.addClass('selected')
+        this.$.manualsTab.addClass('selected')
         $('.nav-api').addClass('hidden')
-        $('.lnb-examples').removeClass('hidden')
+        $('.nav-manuals').removeClass('hidden')
     }
 
     /**
      * The API tab.
      */
     showApiTab() {
-        this.$.examplesTab.removeClass('selected')
+        this.$.manualsTab.removeClass('selected')
         this.$.apiTab.addClass('selected')
         $('.nav-api').removeClass('hidden')
-        $('.lnb-examples').addClass('hidden')
+        $('.nav-manuals').addClass('hidden')
     }
 
 
     /**
-     * Selected item in the sub navigation.
+     * Add a selected class to a link with a matching href.
      */
-    setSubNavSelected() {
+    selectHref() {
         $('.sub-nav-item a').removeClass('selected')
         let item = document.querySelector(`a[href$="${location.pathname.substr(1)}${location.hash}"]`)
         $(item).addClass('selected')

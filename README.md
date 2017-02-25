@@ -1,26 +1,28 @@
 # jsdoc-rtd
-A readthedocs-style themed jsdoc template. Forked from [TUI JSDoc Template](https://github.com/nhnent/tui.jsdoc-template).
+
+## install
+```
+npm install jsdoc-rtd --save-dev
+```
+
+## about
+A [readthedocs](http://read-the-docs.readthedocs.io/en/latest/getting_started.html) style jsdoc template. Forked from [TUI JSDoc Template](https://github.com/nhnent/tui.jsdoc-template) to inherit the extra
+navigation and search features. Mobile navigation styling applied from [docdash template](https://github.com/clenemt/docdash). Cleaned up to SCSS and ES6.
+
+* Styling - Based on the readthedocs theme
+* Styling - Mobile-friendly version (Docdash)
+* Navigation - AutoComplete Searchbox (TUI JSDoc)
+* Navigation - Members / Methods / Events (TUI JSDoc)
+* Navigation - API / Manuals(Tutorials) Tab (TUI JSDoc)
 
 ![Example](https://cloud.githubusercontent.com/assets/213060/23259167/0dd22ca4-f9cc-11e6-9d5e-3ed926c85296.png)
 
 ![Example](https://cloud.githubusercontent.com/assets/213060/23260127/a865491e-f9d0-11e6-8748-35b430d8c68a.png)
 
-## install
-```
-npm i -D jsdoc-rtd
-```
-
-## Feature
-jsdoc-rtd inherits the following features from TUI JSDoc template:
-
-* Navigation - AutoComplete Searchbox
-* Navigation - Members / Methods / Events
-* Navigation - API / Examples(Tutorials) Tab
-* Navigation - Resize
-* Examples - HTML/JS source tab in example page
 
 ## Configuration
-([*jsdoc page - configuration*](http://usejsdoc.org/about-configuring-jsdoc.html#incorporating-command-line-options-into-the-configuration-file))
+See the [jsdoc configuration page](http://usejsdoc.org/about-configuring-jsdoc.html#incorporating-command-line-options-into-the-configuration-file) for generic configaturion options.
+
 
 ### Template
 ```

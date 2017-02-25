@@ -33,6 +33,7 @@ if (package) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?js= title + ' | ' + name ?></title>
     <link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="styles/main.css">
@@ -45,7 +46,11 @@ if (package) {
 </head>
 <body>
 <div class="main-container">
-
+    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+    <label for="nav-trigger" class="navicon-button x">
+      <div class="navicon"></div>
+    </label>
+    <label for="nav-trigger" class="overlay"></label>
     <nav class="lnb" id="lnb">
         <div class="nav-search js-search">
             <div class="logo" style="<?js= style ?>">
@@ -65,10 +70,10 @@ if (package) {
         <?js if (examples) { ?>
         <ol class="nav-tab">
             <li id="api-tab">
-                <a href="#"><h4><?js= apiName ?></h4></a>
+                <a href="#api"><h4><?js= apiName ?></h4></a>
             </li>
-            <li id="examples-tab">
-                <a href="#"><h4><?js= tutorialsName ?></h4></a>
+            <li id="manuals-tab">
+                <a href="#manuals"><h4><?js= tutorialsName ?></h4></a>
             </li>
         </ol>
         <?js } ?>
@@ -93,15 +98,19 @@ if (package) {
 </div>
 
 <script src="js/jquery.min.js"></script>
-<script src="js/rtd.js"></script>
 <script>
-window.selectedApiId = null;
 <?js if (!isTutorial) { ?>
-    window.isManual = false
-    window.selectedApiId = '<?js= docs[0].longname ?>_sub'.replace(/"/g, '_')
+window.isApi = true
+window.isManual = false
+window.doc = {
+    name: <?js= JSON.stringify(docs[0].name) ?>,
+    longname: <?js= JSON.stringify(docs[0].longname) ?>
+}
 <?js } else { ?>
-    window.isManual = true
+window.isApi = false
+window.isManual = true
 <?js } ?>
 </script>
+<script src="js/rtd.js"></script>
 </body>
 </html>
