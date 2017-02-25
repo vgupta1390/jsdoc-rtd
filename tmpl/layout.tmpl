@@ -103,9 +103,11 @@ if (package) {
 window.isApi = true
 window.isManual = false
 window.doc = {
-    name: <?js= JSON.stringify(docs[0].name) ?>,
-    longname: <?js= JSON.stringify(docs[0].longname) ?>
+    name: '<?js= docs[0].name ?>',
+    longname: '<?js= docs[0].longname ?>'
 }
+
+if (!doc.name) isApi = false
 <?js } else { ?>
 window.isApi = false
 window.isManual = true
