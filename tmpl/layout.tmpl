@@ -92,7 +92,8 @@ if (package) {
         <?js= content ?>
         <hr>
         <footer>
-            Built with <a href="https://github.com/jsdoc3/jsdoc">JSDoc <?js= env.version.number ?></a><?js if(env.conf.templates && env.conf.templates.default && env.conf.templates.default.includeDate !== false) ?>
+            <strong><?js= footerText ?></strong><br/>
+            Documented with <a href="https://github.com/jsdoc3/jsdoc">JSDoc <?js= env.version.number ?></a><?js if(env.conf.templates && env.conf.templates.default && env.conf.templates.default.includeDate !== false) ?>
         </footer>
     </div>
 </div>
@@ -104,7 +105,7 @@ window.isApi = true
 window.isManual = false
 window.doc = {
     name: '<?js= docs[0].name ?>',
-    longname: '<?js= docs[0].longname ?>'
+    longname: '<?js= docs[0].longname ?>',
 }
 
 if (!doc.name) isApi = false

@@ -358,7 +358,8 @@ function buildSubNav(obj) {
         memberof: longname,
     })
 
-    let html = `<div class="nav-item-sub hidden" id="${obj.name.replace(/"/g, '_')}_sub">`
+    let html = `<div class="nav-item-sub hidden" id="${obj.longname.replace(/"|:|./g, '_')}_sub">`
+
     html += buildSubNavMembers(members, 'Members')
     html += buildSubNavMembers(methods, 'Methods')
     html += buildSubNavMembers(events, 'Events')
@@ -404,7 +405,6 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 } else {
                     displayName = item.name
                 }
-
                 linkHtml = linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''))
                 itemsNav += makeHtml(item, linkHtml)
             }
@@ -449,8 +449,8 @@ function buildNav(members) {
     nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true)
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto)
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal)
-    nav += buildMemberNav(members.classes, 'Classes', seen, linkto)
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto)
+    nav += buildMemberNav(members.classes, 'Classes', seen, linkto)
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto)
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto)
 
@@ -459,13 +459,13 @@ function buildNav(members) {
         let useGlobalTitleLink = true
 
         members.globals.forEach(function(g) {
-            if ( !hasOwnProp.call(seen, g.longname) ) {
+            if (!hasOwnProp.call(seen, g.longname)) {
                 //  - Add global-typedef in hidden to search api.
                 //  - Default template did not add this.
                 if (g.kind === 'typedef') {
-                    globalNav += `<li class="hidden">${linkto(g.longname, g.name)}</li>`
+                    globalNav += `<li class="nav-item hidden">${linkto(g.longname, g.name)}</li>`
                 } else {
-                    globalNav += `<li>${linkto(g.longname, g.name)}</li>`
+                    globalNav += `<li class="nav-item">${linkto(g.longname, g.name)}</li>`
                     useGlobalTitleLink = false
                 }
             }
@@ -475,9 +475,9 @@ function buildNav(members) {
 
         if (useGlobalTitleLink) {
             // turn the heading into a link so you can actually get to the global page
-            nav += `<div class="nav-api hidden"><h3>${linkto('global', 'Global')}</h3></div>`
+            nav = `<div class="nav-api hidden"><h3>${linkto('global', 'Global')}</h3></div>` + nav
         } else {
-            nav += `<div class="nav-api hidden"><h3>Global</h3><ul>${globalNav}</ul></div>`
+            nav = `<div class="nav-api hidden"><h3>Global</h3><ul>${globalNav}</ul></div>` + nav
         }
     }
 

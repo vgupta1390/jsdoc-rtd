@@ -29,7 +29,8 @@ class RTD {
 
         // Targets the current page in the navigation.
         if (isApi) {
-            this.$.selectedApiSubItem = $(`#${doc.name}_sub`)
+            let longnameSelector = doc.longname.replace(/"|:|./g, '_')
+            this.$.selectedApiSubItem = $(`#${longnameSelector}_sub`)
             this.$.selectedApiSubItem.removeClass('hidden')
             let selectedApiItem = this.$.selectedApiSubItem.prev()
             selectedApiItem.addClass('selected')
