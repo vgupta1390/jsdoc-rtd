@@ -10,6 +10,7 @@ var self = this;
     <?js } ?>
 
     <h4 class="name" id="<?js= id ?>">
+        <?js if (data.meta.code.node.async) { ?><span class="async">async</span><?js } ?>
         <?js= data.attribs + (kind === 'class' ? 'new ' : '') + name + (data.signature || '') ?>
         <?js= self.linkto(meta.shortpath, 'Source ', null, 'line' + meta.lineno) ?>
     </h4>

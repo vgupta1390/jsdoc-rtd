@@ -16,6 +16,13 @@ nav {
         user-select: none;
     }
 
+    .async {
+        font-style: italic;
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: $accent-color;
+    }
+
 
     // Hides the scrollbar from the nav, but still allows scrolling the
     // navbar with the wheel.

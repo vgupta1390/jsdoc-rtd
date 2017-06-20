@@ -324,7 +324,11 @@ function buildSubNavMembers(list, type) {
         html += `<div class="member-type">${type}</div>`
         html += '<ul class="inner">'
         list.forEach(function(item) {
-            html += `<li class="sub-nav-item">${linkto(item.longname, item.name)}</li>`
+            html += `<li class="sub-nav-item">${linkto(item.longname, item.name, null, null, true)}`
+            if (item.meta.code.node.async) {
+                html += ' <span class="async"> async</span>'
+            }
+            html += '</a></li>'
         })
         html += '</ul>'
     }
@@ -349,6 +353,7 @@ function buildSubNav(obj) {
         kind: 'function',
         memberof: longname,
     })
+
     let events = find({
         kind: 'event',
         memberof: longname,
@@ -674,6 +679,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     })
 
     let members = helper.getMembers(data)
+
     members.tutorials = tutorials.children
 
     // Output pretty-printed source files by default.
