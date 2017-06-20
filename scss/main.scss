@@ -317,9 +317,25 @@ dt {
         padding: .75em 0 .75em 10px;
         margin-top: .5rem;
 
+        .async {
+            vertical-align: bottom;
+        }
+
+        .source {
+            float: right;
+            padding-right: 0.5rem;
+            font-size: 1.2rem;
+            padding-top: 0.1rem;
+            display: block;
+        }
+
+        .type-signature {
+            color: lighten($accent-color, 30%);
+        }
+
         .signature {
             color: lighten($accent-color, 30%);
-            padding-left: 10px;
+            padding-left: 5px;
         }
 
         a {
