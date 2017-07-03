@@ -1,7 +1,7 @@
 {
   "name": "jsdoc-rtd",
   "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "homepage": "https://github.com/wearespindle/jsdoc-rtd",
   "main": "publish.js",
