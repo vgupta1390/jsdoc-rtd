@@ -38,7 +38,9 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "font-awesome": "^4.7.0",
-    "sanitize-html": "^1.14.1"
+    "sanitize-html": "^1.14.1",
+    "taffydb": "^2.7.3",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "del": "^2.2.2",
