@@ -389,21 +389,22 @@ function makeItemHtmlInNav(item, linkHtml) {
 }
 
 
-function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
+function buildMemberNav(items, itemHeading, itemsSeen, linktoFn, uniqueId) {
     let nav = ''
 
     if (items.length) {
         let itemsNav = ''
         let className = itemHeading === tutorialsName ? 'nav-manuals hidden' : 'nav-api hidden'
         let makeHtml = env.conf.templates.useCollapsibles ? makeCollapsibleItemHtmlInNav : makeItemHtmlInNav
-
+        let seen = {}
         items.forEach(function(item) {
             let linkHtml
-
-            if ( !hasOwnProp.call(item, 'longname') ) {
-
+            // Skip building an item with the same id more than once. Used
+            // When rendering navigatiohn for modules.
+            if (uniqueId && seen[item.id]) return
+            if (!hasOwnProp.call(item, 'longname')) {
                 itemsNav += `<li>${linktoFn('', item.name)}${buildSubNav(item)}</li>`
-            } else if ( !hasOwnProp.call(itemsSeen, item.longname) ) {
+            } else if (!hasOwnProp.call(itemsSeen, item.longname)) {
                 let displayName
                 if (env.conf.templates.default.useLongnameInNav || item.kind === 'namespace') {
                     displayName = item.longname
@@ -413,6 +414,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 linkHtml = linktoFn(item.longname, displayName.replace(/\b(module|event):/g, ''))
                 itemsNav += makeHtml(item, linkHtml)
             }
+            if (uniqueId) seen[item.id] = true
         })
 
         if (itemsNav !== '') {
@@ -452,7 +454,7 @@ function buildNav(members) {
     let seenTutorials = {}
 
     nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true)
-    nav += buildMemberNav(members.modules, 'Modules', {}, linkto)
+    nav += buildMemberNav(members.modules, 'Modules', {}, linkto, true)
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal)
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto)
     nav += buildMemberNav(members.classes, 'Classes', seen, linkto)
@@ -474,7 +476,6 @@ function buildNav(members) {
                     useGlobalTitleLink = false
                 }
             }
-
             seen[g.longname] = true
         })
 
