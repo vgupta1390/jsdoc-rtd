@@ -27,7 +27,7 @@ let outdir = path.normalize(env.opts.destination)
 
 
 env.conf.templates = _.extend({useCollapsibles: true}, env.conf.templates)
-env.conf.templates.tabNames = _.extend({api: 'API', tutorials: 'Examples'}, env.conf.templates.tabNames)
+env.conf.templates.tabNames = _.extend({api: 'API', tutorials: 'Manuals'}, env.conf.templates.tabNames)
 
 tutorialsName = env.conf.templates.tabNames.tutorials
 
@@ -234,15 +234,26 @@ function getPathFromDoclet(doclet) {
 function generate(title, docs, filename, resolveLinks) {
     resolveLinks = resolveLinks === false ? false : true
 
+    let outpath = path.join(outdir, filename)
+    let seen = {}
+    let filteredDocs = []
+    for (let doc of docs) {
+        if (doc.kind === 'module') {
+            if (!seen[doc.longname]) filteredDocs.push(doc)
+            seen[doc.longname] = true
+        } else {
+            filteredDocs.push(doc)
+        }
+    }
+
     let docData = {
         env: env,
         isTutorial: false,
         title: title,
-        docs: docs,
+        docs: filteredDocs,
         package: find({kind: 'package'})[0],
     }
 
-    let outpath = path.join(outdir, filename)
     let html = view.render('container.tmpl', docData)
 
     if (resolveLinks) {
@@ -363,7 +374,7 @@ function buildSubNav(obj) {
         memberof: longname,
     })
 
-    let html = `<div class="nav-item-sub hidden" id="${obj.longname.replace(/[:|.]/g, '_')}_sub">`
+    let html = `<div class="nav-item-sub hidden" id="${obj.longname.replace(/[~|:|.]/g, '_')}_sub">`
 
     html += buildSubNavMembers(members, 'Members')
     html += buildSubNavMembers(methods, 'Methods')
@@ -391,7 +402,6 @@ function makeItemHtmlInNav(item, linkHtml) {
 
 function buildMemberNav(items, itemHeading, itemsSeen, linktoFn, uniqueId) {
     let nav = ''
-
     if (items.length) {
         let itemsNav = ''
         let className = itemHeading === tutorialsName ? 'nav-manuals hidden' : 'nav-api hidden'
@@ -453,7 +463,7 @@ function buildNav(members) {
     let seen = {}
     let seenTutorials = {}
 
-    nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial, true)
+    nav += buildMemberNav(members.tutorials, tutorialsName, seenTutorials, linktoTutorial)
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto, true)
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal)
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto)
