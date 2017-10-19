@@ -1,5 +1,3 @@
-'use strict'
-
 const CodeHighlight = require('./code_highlight')
 const Search = require('./search')
 
@@ -35,8 +33,10 @@ class RTD {
             let selectedApiItem = this.$.selectedApiSubItem.prev()
             selectedApiItem.addClass('selected')
             // Try to position selectedApiItem at the top of the scroll container.
-            let navScrollTop = this.$.scroll.get(0).getBoundingClientRect().top
-            let navItemTop = selectedApiItem.get(0).getBoundingClientRect().top
+            let navScrollTop = this.$.scroll.get(0)
+            if (navScrollTop) navScrollTop.getBoundingClientRect().top
+            let navItemTop = selectedApiItem.get(0)
+            if (navItemTop) navItemTop.getBoundingClientRect().top
             this.$.scroll.scrollTop(navItemTop - navScrollTop)
             // Height of the item from the top of the scroll container.
             this.$.selectedApiSubItem.parent().find('.fa').removeClass('fa-plus').addClass('fa-minus')
