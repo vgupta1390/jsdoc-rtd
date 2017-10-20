@@ -1,4 +1,4 @@
-# jsdoc-rtd
+# jsdoc-rtld
 
 ## install
 ```
@@ -27,7 +27,7 @@ See the [jsdoc configuration page](http://usejsdoc.org/about-configuring-jsdoc.h
 ### Template
 ```
 "opts": {
-    "template": "node_modules/jsdoc-rtd"
+    "template": "node_modules/jsdoc-rtld"
 }
 ```
 
