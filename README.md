@@ -2,7 +2,7 @@
 
 ## install
 ```
-npm install jsdoc-rtd --save-dev
+npm install jsdoc-rtld --save-dev
 ```
 
 ## about
