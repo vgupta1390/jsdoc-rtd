@@ -1,9 +1,9 @@
 {
-  "name": "jsdoc-rtd",
+  "name": "jsdoc-rtld",
   "description": "Readthedocs-style jsdoc template. Fork from TUI JSDoc template.",
   "version": "1.0.15",
   "license": "MIT",
-  "homepage": "https://github.com/wearespindle/jsdoc-rtd",
+  "homepage": "https://github.com/vgupta1390/jsdoc-rtd",
   "main": "publish.js",
   "scripts": {
     "build-css": "node-sass --include-path scss scss/main.scss static/styles/main.css",
